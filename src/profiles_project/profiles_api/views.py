@@ -26,8 +26,6 @@ class HelloApiView(APIView):
 
         return Response({'message': 'Avengers', 'an_apiview': an_apiview})
 
-
-    def post(self, request):
         """Create a hello message with our name"""
 
         serializer = serializers .HelloSerializer(data= request.data)
@@ -44,6 +42,10 @@ class HelloApiView(APIView):
         """Handels updating an object"""
         return Response({'method': 'put'})
 
+    def post(self, request, pk=None):
+        """Handels updating an object"""
+        return Response({'method': 'post'})
+
     def patch(self, request, pk=None):
         """Patch request, only updates fields provided in the request."""
         return Response({'method': 'patch'})
@@ -56,8 +58,10 @@ class HelloApiView(APIView):
 class HelloViewSet(viewsets.ViewSet):
     """Test API Viewset"""
 
+    #List Object: Lists all the object used in the function
     def list(self, request):
         """Return Hello Message"""
+
         a_viewset = [
             'Friday',
             'Yong',
