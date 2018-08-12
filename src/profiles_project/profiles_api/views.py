@@ -6,7 +6,7 @@ from rest_framework import status
 
 #This is NOT the package, but file from the same root folder
 from . import serializers
-
+from . import models
 
 # Create your views here.
 
@@ -104,3 +104,12 @@ class HelloViewSet(viewsets.ViewSet):
             """Handels getting an object by it's ID"""
 
             return Response({'http_method' : 'DELETE'})
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handels Creating, Creating and updating profiles"""
+
+    serializer_class = serializers.UserProfileSerializer
+
+    #how to retrieve objects from our db
+    queryset = models.UserProfile.objects.all()
